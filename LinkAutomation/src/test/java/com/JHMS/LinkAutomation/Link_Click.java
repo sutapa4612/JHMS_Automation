@@ -3,11 +3,15 @@ package com.JHMS.LinkAutomation;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -75,16 +79,45 @@ public class Link_Click
 		//Find number of rows in excel file
 
 		int rowCount = sheet.getLastRowNum()-sheet.getFirstRowNum();
-        for (int i = 0; i < rowCount+1; i++) {
+        for (int i = 1; i < rowCount+1; i++) {
+        	
 		Row row = sheet.getRow(i);
 			{
-				org.apache.poi.ss.usermodel.Cell cell=row.getCell(0);
+				
+				org.apache.poi.ss.usermodel.Cell cell=row.getCell(2);
 				String cellValue=cell.getStringCellValue();
                 System.out.println(cellValue);
                 driver.get(cellValue);
+                
 				//driver.navigate().to(cellValue);
 				driver.manage().window().maximize();
-				Thread.sleep(2000);
+				Thread.sleep(10000);
+				boolean eleDisplayed;
+				try {
+					eleDisplayed = driver.findElement(By.xpath("//h1[@id='headingDiv']")).isDisplayed();
+					System.out.println("eleDisplayed "+eleDisplayed);
+					if(eleDisplayed)
+					{
+						String sval = driver.findElement(By.xpath("//h1[@id='headingDiv']")).getText();
+					    System.out.println("sval "+sval);
+						if(sval.equals("Registration Successful"))
+						{
+							Cell cell1 = sheet.getRow(i).createCell(10);
+							cell1.setCellValue(sval);
+						}
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+					System.out.println("sval ");
+					Cell cell2 = sheet.getRow(i).createCell(10);
+					cell2.setCellValue("Not Success");
+				}
+				
+				FileOutputStream outfile = new FileOutputStream(file);
+				book.write(outfile);
+				outfile.close();
+				  
 			}
 
 		}
