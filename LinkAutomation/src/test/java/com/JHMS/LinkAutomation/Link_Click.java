@@ -91,7 +91,7 @@ public class Link_Click
                 
 				//driver.navigate().to(cellValue);
 				driver.manage().window().maximize();
-				Thread.sleep(10000);
+				Thread.sleep(5000);
 				boolean eleDisplayed;
 				try {
 					eleDisplayed = driver.findElement(By.xpath("//h1[@id='headingDiv']")).isDisplayed();
