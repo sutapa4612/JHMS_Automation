@@ -5,11 +5,11 @@
   <groupId>com.JHMS</groupId>
   <artifactId>LinkAutomation</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  
 
   <name>LinkAutomation</name>
   <url>http://maven.apache.org</url>
-
+  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -26,6 +26,21 @@
 		          </suiteXmlFiles>
 		        </configuration>
 		      </plugin>
+		      <plugin>
+<artifactId>maven-compiler-plugin</artifactId>
+<version>3.1</version>
+<configuration>
+<fork>true</fork>
+<executable>C:\Program Files\Java\jdk1.8.0_131\bin\javac.exe</executable>
+</configuration>
+</plugin>
+       <plugin>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-maven-plugin</artifactId>
+<configuration>
+<mainClass>createanddeploywar.BookMain</mainClass>
+</configuration>
+</plugin>
 		</plugins>
 		</build>
    

@@ -109,7 +109,6 @@ public class Link_Click
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					//e.printStackTrace();
-					System.out.println("sval ");
 					Cell cell2 = sheet.getRow(i).createCell(10);
 					cell2.setCellValue("Not Success");
 				}
