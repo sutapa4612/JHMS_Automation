@@ -5,7 +5,6 @@
   <groupId>com.JHMS</groupId>
   <artifactId>LinkAutomation</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  
 
   <name>LinkAutomation</name>
   <url>http://maven.apache.org</url>
@@ -93,4 +92,6 @@
 		    <version>3.15</version>
 		</dependency>
   </dependencies>
+  
+  <packaging>war</packaging>
 </project>
